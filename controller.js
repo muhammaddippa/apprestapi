@@ -41,7 +41,7 @@ exports.tambahmahasiswa = function (req, res) {
         [nim, nama, jurusan],
         function (error, rows, fields){
             if(error) {
-                console.log(error);
+                connection.log(error);
             } else {
                 response.ok("Berhasil menambahkan data !", res)
             }
@@ -59,8 +59,23 @@ exports.ubahmahasiswa = function (req, res) {
     [nim, nama, jurusan, id],
     function(error, rows, fields){
         if(error) { 
+            connection.log(error);
          } else {
             response.ok("Berhasil merubah data !", res)
+        }
+    })
+}
+
+//menghapus data berdasarkan ID
+exports.hapusmahasiswa = function (req, res) {
+    var id = req.body.id_mahasiswa;
+
+    connection.query("DELETE FROM mahasiswa WHERE id_mahasiswa=?", [id],
+    function(error, rows, fields) {
+        if(error) {
+            connection.log(error);
+        } else {
+            response.ok("Berhasil menghapus data !", res);
         }
     })
 }
