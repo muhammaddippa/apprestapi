@@ -79,3 +79,15 @@ exports.hapusmahasiswa = function (req, res) {
         }
     })
 }
+
+//menampilkan matakuliah group
+exports.tampilgroupmatakuliah = function(req, res) {
+    connection.query("SELECT * FROM nested_join",
+    function(error, rows, fileds) {
+        if(error) {
+            connection.log(error);
+        } else {
+            response.oknested(rows, res)
+        }
+    });
+}
